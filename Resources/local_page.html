@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>A large image here</title>
+		<title>Testing event bubbling</title>
 		<meta name="viewport" content="width=device-width">
 		<meta name="format-detection" content="telephone=no"/>
 		
@@ -9,21 +9,30 @@
 		
 		<style type="text/css">
 			html, body { margin: 0; padding: 0; }
+			
+			#bubbles { width: 100%; height: 100%; }
+			#bubbles > div { position: absolute; width: 50px; height: 50px; -webkit-border-radius: 10px; border-radius: 10px; }
+			#bubble-1 { background: red; top: 15px; left: 15px; }
+			#bubble-2 { background: blue; top: 15px; right: 15px; }
+			#bubble-3 { background: green; bottom: 15px; left: 15px; }
+			#bubble-4 { background: yellow; bottom: 15px; right: 15px; }
 		</style>
 	</head>
 	<body>
-		<img id="huge-image" src="" alt="huge">
+		<div id="bubbles">
+			<div id="bubble-1"></div>
+			<div id="bubble-2"></div>
+			<div id="bubble-3"></div>
+			<div id="bubble-4"></div>
+		</div>
 		
 		<script type="text/javascript">
-			/* 
-			 * We can't refer to local resources that easily, so we need to use an event listener to pass
-			 * the path of the image in.
-			 */
-			Ti.App.addEventListener('loadImage', function(e) {
-				Ti.API.info($('#huge-image').attr('src'));
-				Ti.API.info('RECEIVED PATH ' + e.path);
-				$('#huge-image').attr('src', e.path);
-				Ti.API.info($('#huge-image').attr('src'));
+			$('#bubbles > div').bind('click', function(e) {
+				Ti.API.info('click');
+			});
+			
+			$('#bubbles > div').bind('longpress', function(e) {
+				Ti.API.info('long press');
 			});
 		</script>
 	</body>
