@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Testing event bubbling</title>
-		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=2.0"/>
 		<meta name="format-detection" content="telephone=no"/>
 		
 		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
@@ -10,7 +10,7 @@
 		<style type="text/css">
 			html, body { margin: 0; padding: 0; }
 			
-			#bubbles { width: 100%; height: 100%; }
+			#bubbles { width: 2000px; height: 2000px; }
 			#bubbles > div { position: absolute; width: 50px; height: 50px; -webkit-border-radius: 10px; border-radius: 10px; }
 			#bubble-1 { background: red; top: 15px; left: 15px; }
 			#bubble-2 { background: blue; top: 15px; right: 15px; }
@@ -31,8 +31,12 @@
 				Ti.API.info('click');
 			});
 			
-			$('#bubbles > div').bind('longpress', function(e) {
-				Ti.API.info('long press');
+			$(window).bind('resize', function(e) {
+				Ti.API.info('window resize');
+			});
+			
+			$(window).scroll(function(e) {
+				Ti.API.info('window scroll');
 			});
 		</script>
 	</body>

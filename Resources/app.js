@@ -10,12 +10,6 @@ var webview = Ti.UI.createWebView({
 	url: 'local_page.html'
 });
 
-// Pass the file of the image into the webview
-// var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "Wilber-huge-alpha.png");
-// webview.addEventListener("load", function(e) {
-	// Ti.App.fireEvent("loadImage", { path: file.nativePath });
-// });
-
 win.add(webview);
 
 win.open();
